@@ -23,7 +23,7 @@ export async function analyze(query: string, mode: Mode, sources: Source[]): Pro
   const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
   const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
     method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key }, signal: AbortSignal.timeout(90000),
-    body: JSON.stringify({ systemInstruction: { parts: [{ text: SYS }] }, contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig: { responseMimeType: 'application/json', temperature: 0.1 } }),
+    body: JSON.stringify({ systemInstruction: { parts: [{ text: SYS }] }, contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig: { responseMimeType: 'application/json' } }),
   });
   if (!r.ok) throw new Error(`Gemini HTTP ${r.status}`);
   const j = (await r.json()) as { candidates?: { content?: { parts?: { text?: string }[] } }[] };
