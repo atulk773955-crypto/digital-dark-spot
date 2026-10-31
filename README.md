@@ -26,3 +26,4 @@ Deploy on Vercel: import the repo and add the same environment variables. Keys s
 - Session history and checklist state use browser localStorage (no Supabase yet).
 - Respects provider terms; does not claim full internet coverage.
 - Pages that block readers may fail; failures are shown as warnings.
+- 
